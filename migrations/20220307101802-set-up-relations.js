@@ -1,38 +1,35 @@
-'use strict';
+"use strict";
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-   
-    await queryInterface.addColumn("story", "userId", {
+    await queryInterface.addColumn("stories", "userId", {
       type: Sequelize.INTEGER,
       references: {
         model: "users",
         key: "id",
       },
       onUpdate: "CASCADE",
+      // onDelete: "SET NULL",
       allowNull: false,
     });
-
-    await queryInterface.addColumn("story", "categoryId", {
+    await queryInterface.addColumn("stories", "categoryId", {
       type: Sequelize.INTEGER,
       references: {
-        model: "category",
-        allowNull: false,
+        model: "categories",
         key: "id",
       },
       onUpdate: "CASCADE",
-    });
-    await queryInterface.addColumn("users", "isArtist", {
-      type: Sequelize.BOOLEAN,
-      
+      //onDelete: "SET NULL",
+      allowNull: false,
     });
   },
 
-
   async down(queryInterface, Sequelize) {
-    await queryInterface.removeColumn("artworks", "userId", Sequelize.INTEGER);
-    await queryInterface.removeColumn("bids", "artworkId", Sequelize.INTEGER);
-    await queryInterface.removeColumn("users", "isArtist", Sequelize.BOOLEAN);
-    
+    await queryInterface.removeColumn("stories", "userId", Sequelize.INTEGER);
+      await queryInterface.removeColumn(
+        "stories",
+        "categoryId",
+        Sequelize.INTEGER
+      );
   },
 };
