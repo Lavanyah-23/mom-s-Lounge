@@ -11,13 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      story.belongsTo(models.user)
-      story.belongsTo(models.category)
+      story.belongsTo(models.user, {foreignKey :"userId"})
+      story.belongsTo(models.category, {foreignKey :"categoryId"})
     }
   };
   story.init({
     title: DataTypes.STRING,allowNull: false,
-    imageUrl: DataTypes.STRING,
+    imageUrl: DataTypes.STRING, allowNull: true,
     description: DataTypes.TEXT,allowNull: false,
   }, {
     sequelize,
