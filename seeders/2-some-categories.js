@@ -2,7 +2,8 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    "categories",
+    await queryInterface.bulkInsert(
+      "categories",
       [
         {
           type: "Pregnancy",
@@ -30,7 +31,8 @@ module.exports = {
           updatedAt: new Date(),
         },
       ],
-      {};
+      {}
+    );
   },
 
   down: async (queryInterface, Sequelize) => {

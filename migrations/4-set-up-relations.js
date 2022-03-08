@@ -9,7 +9,6 @@ module.exports = {
         key: "id",
       },
       onUpdate: "CASCADE",
-      // onDelete: "SET NULL",
       allowNull: false,
     });
     await queryInterface.addColumn("stories", "categoryId", {
@@ -19,17 +18,16 @@ module.exports = {
         key: "id",
       },
       onUpdate: "CASCADE",
-      //onDelete: "SET NULL",
       allowNull: false,
     });
   },
 
   async down(queryInterface, Sequelize) {
     await queryInterface.removeColumn("stories", "userId", Sequelize.INTEGER);
-      await queryInterface.removeColumn(
-        "stories",
-        "categoryId",
-        Sequelize.INTEGER
-      );
+    await queryInterface.removeColumn(
+      "stories",
+      "categoryId",
+      Sequelize.INTEGER
+    );
   },
 };
