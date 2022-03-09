@@ -9,7 +9,8 @@ module.exports = {
         key: "id",
       },
       onUpdate: "CASCADE",
-      allowNull: false,
+      // allowNull: false,
+      onDelete: "SET NULL",
     });
     await queryInterface.addColumn("stories", "categoryId", {
       type: Sequelize.INTEGER,
@@ -18,7 +19,25 @@ module.exports = {
         key: "id",
       },
       onUpdate: "CASCADE",
-      allowNull: false,
+      onDelete: "SET NULL",
+    });
+    await queryInterface.addColumn("comments", "userId", {
+      type: Sequelize.INTEGER,
+      references: {
+        model: "users",
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "SET NULL",
+    });
+    await queryInterface.addColumn("comments", "storyId", {
+      type: Sequelize.INTEGER,
+      references: {
+        model: "stories",
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "SET NULL",
     });
   },
 
@@ -29,5 +48,7 @@ module.exports = {
       "categoryId",
       Sequelize.INTEGER
     );
+    await queryInterface.removeColumn("comments", "userId", Sequelize.INTEGER);
+    await queryInterface.removeColumn("comments", "storyId", Sequelize.INTEGER);
   },
 };
