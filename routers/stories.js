@@ -9,7 +9,7 @@ const router = new Router();
 router.get("/", async (req, res) => {
   try {
     const allStories = await Story.findAll({ include: [Comment] });
-    console.log("All stories", allStories);
+    // console.log("All stories", allStories);
     res.send(allStories);
   } catch (error) {
     console.log("No stories related to your search", error);
@@ -20,10 +20,10 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    console.log("id is", id);
+    //console.log("id is", id);
 
     const storyDetail = await Story.findByPk(id);
-    console.log("story", storyDetail);
+    //console.log("story", storyDetail);
 
     if (!storyDetail) {
       res.status(404).send("No story was found");
@@ -38,7 +38,7 @@ router.get("/:id", async (req, res) => {
 router.post("/", authMiddleware, async (req, res) => {
   const { title = "", imageUrl = "", description } = req.body;
   const userId = req.user.id;
-  console.log({ userId });
+  //console.log({ userId });
   try {
     const newStory = await Story.create({
       title,
