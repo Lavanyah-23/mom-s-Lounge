@@ -11,11 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       story.belongsTo(models.user, { foreignKey: "userId" });
       story.belongsTo(models.category, { foreignKey: "categoryId" });
-      // story.belongsToMany(models.comment, {
-      //   through: "",
-      //   foreignKey: "",
-      // })
-      
+      story.hasMany(models.comment);
     }
   }
   story.init(
