@@ -1,142 +1,60 @@
-# Server template
+# Mama's Lounge
 
-This is a simple server template to for my students to start projects quickly.
+This is a web Application for Mamas who wants to post stories about them and their kids
 
-## Table of contents:
+### Used technologies and concepts
 
-- **[Setup](#setup-how-to-use-this-template)**
-- **[Endpoints](#endpoints)**
-- **[Sample requests with axios](#sample-requests-with-axios)**
-- **[Sample requests with httpie](#sample-requests-with-httpie)**
-- **[History of this project (pullrequests)](#history-of-this-project)**
+#### Frontend
+- React
+- Redux
+- Axios
+- CSS
 
-## SETUP How to use this template
+#### Backend
+- Node.js
+- Express REST API
+- JWT & Bcrypt Authentication
+- PostgreSQL database
+- Sequelize ORM
 
-1. Create a new project based on this template using the `Use this template` button
+### Goals for this project
 
-![HOW_TO_USE](https://user-images.githubusercontent.com/20372832/77003323-70966180-695d-11ea-8abe-b362d57135f3.gif)
+- demonstrate the main skills I've learned at the Codaisseur Academy. 
+- build a full-stack web app from a first idea into a working version within a two-week sprint
+- practice planning with user-stories, wireframes, datamodels, a kanban projectboard and git version control
+- extend my coding knowledge and try out new technologies. I chose to use this opportunity to learn upload images from local system 
 
-2. Clone the app
+### User stories
 
-```
-git clone git@github.com:YOUR_GITHUB_NAME/YOUR_PROJECT_NAME.git
-```
+- As a user I can sign up to make an account and login.
+- As a user I can be able to view all Stories
+  - I can view all stories
+  - I can update my story if i am an authenticated User
+ - As a user I can be able to add a new story
+   - I can give title to my story
+   - I can add Image
+   - I can add Description about my story
 
-3. cd into your project
+### Project Board
 
-```
-cd YOUR_PROJECT_NAME
-```
+See the [Github projects kanban board](https://github.com/Lavanyah-23/moms-Lounge-client)
 
-4. install dependencies
+### Wireframe
 
-```
-npm install
-```
-
-5. Configure your database in `config/config.json`
-
-Default config is setup for usage with an ElephantSQL database instance, you need to provide the DB Url on the "url" key of the config.json file, key development.
-
-```json
-// config/config.json
-{
-  "development": {
-    "url": "YOUR_ELEPHANTSQL_URL_HERE",
-    "dialect": "postgres",
-    "operatorsAliases": "0"
-  },
-}
-```
+See the [original wireframes at figma.com](https://www.figma.com/file/5xompwRJmXgvS2TBPkbuLj/MamaMia?node-id=0%3A1)
+These are the wireframes I made at the beginning of the project. I stuck with them for the most part
 
 
-If planning to use this template with a docker database the config object should be changed to:
+### Datamodel
 
-```json
-// config/config.json
-{
-  "development": {
-    "username": "postgres",
-    "password": "secret",
-    "database": "YOUR_PROJECT_NAME_HERE_development",
-    "host": "localhost",
-    "dialect": "postgres",
-    "operatorsAliases": "0"
-  }
-}
-```
+See the [database model at dbdiagram.io](https://lucid.app/lucidchart/fafc1710-552e-4261-b01d-b0832b1dfba9/edit?invitationId=inv_f352a55e-66f9-41e6-a153-c99d7d7c5eb4)
 
-And you must revert the changes on this line in models/index.js: https://github.com/Codaisseur/express-template/commit/ada7711c8b19c8f240bc61f94743213efe4a77d2#diff-18c449caa39363f82bacb4f7489e7783L15
+### Backend server repo
+See [make-a-scene-backend on GitHub](https://github.com/Lavanyah-23/mom-s-Lounge)
 
+### Plans to extend the project
 
-6. Create database, run migrations & seed data
+On my project board I have added a list of features I have in mind to add to the project. Many of these features were already considered in the design of the project but I did not have time to add everything within two weeks. For example adding categories filter to view story and adding marketplace for mamas to buy an sell products
 
-`package.json` contains a script for this
+I believe the concept of the app provides a basis for a lot of potentially fun features, which I hope to add some day when I have the time.
 
-```bash
-npm run initdev
-```
-
-Or run the commands seperately
-
-```bash
-npx sequelize-cli db:migrate
-npx sequelize-cli db:seed:all
-```
-
-7. start server with `nodemon` (recommended for development)
-
-```
-npm run dev
-```
-
-8. or start normally
-
-```
-npm start
-```
-
-## Endpoints
-
-| Method | Path                       | Purpose                             | required parameters   | auth |
-| ------ | -------------------------- | ----------------------------------- | --------------------- | ---- |
-| GET    | '/'                        | Test if your server is running      | none                  | no   |
-| POST   | '/echo'                    | Test POST requests                  | none                  | no   |
-| POST   | '/signup'                  | Create a new user and get a token   | email, name, password | no   |
-| POST   | '/login'                   | Get a token with email & password   | email, password       | no   |
-| GET    | '/me'                      | Get information of this user        | none                  | yes  |
-| POST   | '/authorized_post_request' | Test POST requests (token required) | none                  | yes  |
-
-## Sample requests with axios
-
-To demo making request to this server, some small script are included that make requests using `axios`
-
-The scripts can be found in [/sampleRequests](./sampleRequests)
-
-1. Make sure to follow the the setup in this readme first
-2. cd sampleRequests
-3. Run example requests
-
-```
-node hello.js
-node echo.js
-node signup.js
-node login.js
-node me.js
-node authorizedPost.js
-```
-
-## Sample requests with httpie
-
-To demo making request to this server, bash commands are included that make requests using `httpie`
-
-They can found in [./sampleRequests/httpie.md](./sampleRequests/httpie.md)
-
-## History of this project
-
-- [Setup of the server](https://github.com/Codaisseur/express-template/commit/cd2f790fbab6c561300163466a074fd09a35f704)
-- [Adding a README](https://github.com/Codaisseur/express-template/pull/1)
-- [Setting up the Database](https://github.com/Codaisseur/express-template/pull/2)
-- [Signup, Login & auth middleware](https://github.com/Codaisseur/express-template/pull/3)
-- [Configure cors](https://github.com/Codaisseur/express-template/pull/4)
-- [Seed using models & add delay middleware](https://github.com/Codaisseur/express-template/pull/5)
