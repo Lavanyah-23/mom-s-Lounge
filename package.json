@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node .",
-    "dev": "env DELAY=1000 npx nodemon .",
+    "dev": "npx nodemon .",
     "initdev": "npm run migrate && npm run seed",
     "migrate": "npx sequelize-cli db:migrate",
     "seed": "npx sequelize-cli db:seed:all",
@@ -23,15 +23,17 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
+    "openai": "^4.20.1",
     "pg": "^8.7.1",
     "redux-thunk": "^2.4.1",
-    "sequelize": "^6.6.5",
-    "sequelize-cli": "^6.2.0"
+    "sequelize": "^6.6.5"
   },
   "devDependencies": {
     "axios": "^0.19.2",
-    "nodemon": "^2.0.13"
+    "nodemon": "^2.0.13",
+    "sequelize-cli": "^6.6.3"
   }
 }

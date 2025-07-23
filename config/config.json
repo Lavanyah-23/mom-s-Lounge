@@ -1,7 +1,13 @@
 {
   "development": {
-    "url": "postgres://jsjucoar:KnAS76lCvZ9mPByiOIHh_a7icgCIJavv@jelani.db.elephantsql.com/jsjucoar",
+    "url": "postgresql://neondb_owner:npg_2umZSWrTNOj5@ep-lively-haze-a2ngdey6-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require",
     "dialect": "postgres",
+    "dialectOptions": {
+    "ssl": {
+      "require": true,
+      "rejectUnauthorized": false
+    }
+  },
     "operatorsAliases": "0"
   },
   "test": {

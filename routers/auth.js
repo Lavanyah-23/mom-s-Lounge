@@ -53,6 +53,7 @@ router.post("/signup", async (req, res) => {
 
     res.status(201).json({ token, ...newUser.dataValues });
   } catch (error) {
+    console.error("Signup error details:", error); // <--- Add this line
     if (error.name === "SequelizeUniqueConstraintError") {
       return res
         .status(400)
@@ -61,6 +62,7 @@ router.post("/signup", async (req, res) => {
 
     return res.status(400).send({ message: "Something went wrong, sorry" });
   }
+  
 });
 
 // The /me endpoint can be used to:

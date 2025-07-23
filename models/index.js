@@ -17,6 +17,45 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
+sequelize.authenticate()
+  .then(() => console.log('Database connected!'))
+  .catch(err => console.error('Unable to connect to the database:', err));
+
+  // Import models (initialize with sequelize and DataTypes)
+const User = require("./user")(sequelize, Sequelize.DataTypes);
+const Story = require("./story")(sequelize, Sequelize.DataTypes);
+const Comment = require("./comment")(sequelize, Sequelize.DataTypes);
+const Category = require("./category")(sequelize, Sequelize.DataTypes);
+const Marketplace = require("./marketplace")(sequelize, Sequelize.DataTypes);
+const AiChat = require("./aiChat")(sequelize, Sequelize.DataTypes);
+
+// Add models to db object
+db.User = User;
+db.Story = Story;
+db.Comment = Comment;
+db.Category = Category;
+db.Marketplace = Marketplace;
+db.AiChat = AiChat;
+
+// Define associations
+User.hasMany(Story);
+Story.belongsTo(User);
+
+User.hasMany(Comment);
+Comment.belongsTo(User);
+
+Story.hasMany(Comment);
+Comment.belongsTo(Story);
+
+Category.hasMany(Story);
+Story.belongsTo(Category);
+
+User.hasMany(Marketplace);
+Marketplace.belongsTo(User);
+
+User.hasMany(AiChat);
+AiChat.belongsTo(User);
+
 fs
   .readdirSync(__dirname)
   .filter(file => {
