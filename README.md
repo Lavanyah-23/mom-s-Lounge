@@ -17,6 +17,44 @@ This is a web Application for Mamas who wants to post stories about them and the
 - PostgreSQL database
 - Sequelize ORM
 
+### Backend Setup
+
+1. Clone the repository and install dependencies:
+   ```sh
+   git clone <your-repo-url>
+   cd moms-lounge-server
+   npm install
+   ```
+2. Configure your database connection in `config/config.json` (the project uses PostgreSQL and supports SSL for Neon/Postgres).
+3. Run database migrations:
+   ```sh
+   npx sequelize-cli db:migrate
+   ```
+4. (Optional) Seed the database:
+   ```sh
+   npx sequelize-cli db:seed:all
+   ```
+5. Start the backend server:
+   ```sh
+   npm start
+   ```
+
+### API Testing
+
+You can test the API endpoints using the sample request scripts in the `sampleRequests/` directory:
+
+- To test signup:
+  ```sh
+  node sampleRequests/signup.js
+  ```
+- To test login:
+  ```sh
+  node sampleRequests/login.js
+  ```
+- To test authenticated endpoints, use the token returned from login in your requests.
+
+You can also use tools like Postman or HTTPie to interact with the API directly.
+
 ### Goals for this project
 
 - demonstrate the main skills I've learned at the Codaisseur Academy. 
@@ -50,7 +88,7 @@ These are the wireframes I made at the beginning of the project. I stuck with th
 See the [database model at dbdiagram.io](https://lucid.app/lucidchart/fafc1710-552e-4261-b01d-b0832b1dfba9/edit?invitationId=inv_f352a55e-66f9-41e6-a153-c99d7d7c5eb4)
 
 ### Backend server repo
-See [make-a-scene-backend on GitHub](https://github.com/Lavanyah-23/mom-s-Lounge)
+- See [this repository](<your-repo-url>)
 
 ### Plans to extend the project
 

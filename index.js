@@ -7,6 +7,7 @@ const authRouter = require("./routers/auth");
 const storyRouter = require("./routers/stories");
 const aiRouter = require("./routers/ai");
 const marketplaceRouter = require("./routers/marketplace");
+const commentsRouter = require("./routers/comments");
 const { PORT } = require("./config/constants");
 
 // Create an express app
@@ -39,6 +40,7 @@ app.use("/auth", authRouter);
 app.use("/stories", storyRouter);
 app.use("/ai", aiRouter);
 app.use("/marketplace", marketplaceRouter);
+app.use("/comments", commentsRouter);
 
 // POST endpoint which requires a token for testing purposes, can be removed
 app.post("/authorized_post_request", authMiddleWare, (req, res) => {

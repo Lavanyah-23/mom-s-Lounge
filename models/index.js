@@ -25,6 +25,8 @@ sequelize.authenticate()
 const User = require("./user")(sequelize, Sequelize.DataTypes);
 const Story = require("./story")(sequelize, Sequelize.DataTypes);
 const Comment = require("./comment")(sequelize, Sequelize.DataTypes);
+const Like = require("./like")(sequelize, Sequelize.DataTypes);
+const CommentLike = require("./commentLike")(sequelize, Sequelize.DataTypes);
 const Category = require("./category")(sequelize, Sequelize.DataTypes);
 const Marketplace = require("./marketplace")(sequelize, Sequelize.DataTypes);
 const AiChat = require("./aiChat")(sequelize, Sequelize.DataTypes);
@@ -33,6 +35,8 @@ const AiChat = require("./aiChat")(sequelize, Sequelize.DataTypes);
 db.User = User;
 db.Story = Story;
 db.Comment = Comment;
+db.Like = Like;
+db.CommentLike = CommentLike;
 db.Category = Category;
 db.Marketplace = Marketplace;
 db.AiChat = AiChat;
@@ -55,6 +59,20 @@ Marketplace.belongsTo(User);
 
 User.hasMany(AiChat);
 AiChat.belongsTo(User);
+
+// Like associations
+User.hasMany(Like);
+Like.belongsTo(User);
+
+Story.hasMany(Like);
+Like.belongsTo(Story);
+
+// CommentLike associations
+User.hasMany(CommentLike);
+CommentLike.belongsTo(User);
+
+Comment.hasMany(CommentLike);
+CommentLike.belongsTo(Comment);
 
 fs
   .readdirSync(__dirname)
