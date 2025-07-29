@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node .",
     "dev": "npx nodemon .",
+    "vercel-build": "npm install && npm run migrate",
     "initdev": "npm run migrate && npm run seed",
     "migrate": "npx sequelize-cli db:migrate",
     "seed": "npx sequelize-cli db:seed:all",
