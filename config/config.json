@@ -3,11 +3,11 @@
     "url": "postgresql://neondb_owner:npg_2umZSWrTNOj5@ep-lively-haze-a2ngdey6-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require",
     "dialect": "postgres",
     "dialectOptions": {
-    "ssl": {
-      "require": true,
-      "rejectUnauthorized": false
-    }
-  },
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    },
     "operatorsAliases": "0"
   },
   "test": {
@@ -19,11 +19,22 @@
     "operatorsAliases": "0"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
+    "url": "${DATABASE_URL}",
     "dialect": "postgres",
-    "operatorsAliases": "0"
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": true,
+        "sslmode": "require"
+      }
+    },
+    "operatorsAliases": "0",
+    "logging": false,
+    "pool": {
+      "max": 5,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
+    }
   }
 }
