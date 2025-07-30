@@ -3,11 +3,7 @@
   "builds": [
     {
       "src": "index.js",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": ["**"],
-        "maxLambdaSize": "15mb"
-      }
+      "use": "@vercel/node"
     }
   ],
   "routes": [
@@ -15,6 +11,5 @@
       "src": "/(.*)",
       "dest": "/"
     }
-  ],
-  "buildCommand": "npm install && npm run migrate"
+  ]
 }
