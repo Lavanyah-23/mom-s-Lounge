@@ -30,11 +30,11 @@
     "openai": "^4.20.1",
     "pg": "^8.7.1",
     "redux-thunk": "^2.4.1",
-    "sequelize": "^6.6.5"
+    "sequelize": "^6.6.5",
+    "sequelize-cli": "^6.6.3"
   },
   "devDependencies": {
     "axios": "^0.19.2",
-    "nodemon": "^2.0.13",
-    "sequelize-cli": "^6.6.3"
+    "nodemon": "^2.0.13"
   }
 }
