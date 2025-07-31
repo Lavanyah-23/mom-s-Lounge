@@ -42,6 +42,15 @@ app.use("/ai", aiRouter);
 app.use("/marketplace", marketplaceRouter);
 app.use("/comments", commentsRouter);
 
+// Add this test route
+app.get("/", (req, res) => {
+  res.json({
+    message: "Server is running!",
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || 'development'
+  });
+});
+
 // POST endpoint which requires a token for testing purposes, can be removed
 app.post("/authorized_post_request", authMiddleWare, (req, res) => {
   // accessing user that was added to req by the auth middleware

@@ -19,22 +19,21 @@
     "operatorsAliases": "0"
   },
   "production": {
-    "url": "${DATABASE_URL}",
-    "dialect": "postgres",
-    "dialectOptions": {
-      "ssl": {
-        "require": true,
-        "rejectUnauthorized": true,
-        "sslmode": "require"
-      }
-    },
-    "operatorsAliases": "0",
-    "logging": false,
-    "pool": {
-      "max": 5,
-      "min": 0,
-      "acquire": 30000,
-      "idle": 10000
+  "use_env_variable": "DATABASE_URL",
+  "dialect": "postgres",
+  "dialectOptions": {
+    "ssl": {
+      "require": true,
+      "rejectUnauthorized": false
     }
+  },
+  "operatorsAliases": false,
+  "logging": false,
+  "pool": {
+    "max": 5,
+    "min": 0,
+    "acquire": 30000,
+    "idle": 10000
   }
+}
 }
