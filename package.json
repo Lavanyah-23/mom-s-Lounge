@@ -4,9 +4,10 @@
   "description": "Simple express server with sequelize, pg and jwts",
   "main": "index.js",
   "scripts": {
-    "start": "node .",
+    "start": "node index.js",
     "dev": "npx nodemon .",
-    "vercel-build": "npm install && npm run migrate",
+    "build": "npm install && npm run migrate",
+    "vercel-build": "npm run build",
     "initdev": "npm run migrate && npm run seed",
     "migrate": "npx sequelize-cli db:migrate",
     "seed": "npx sequelize-cli db:seed:all",
