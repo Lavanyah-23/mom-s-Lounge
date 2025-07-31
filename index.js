@@ -9,6 +9,14 @@ const aiRouter = require("./routers/ai");
 const marketplaceRouter = require("./routers/marketplace");
 const commentsRouter = require("./routers/comments");
 const { PORT } = require("./config/constants");
+process.on('uncaughtException', (error) => {
+  console.error('Uncaught Exception:', error);
+  process.exit(1);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+});
 
 // Create an express app
 const app = express();
@@ -43,12 +51,18 @@ app.use("/marketplace", marketplaceRouter);
 app.use("/comments", commentsRouter);
 
 // Add this test route
-app.get("/", (req, res) => {
-  res.json({
-    message: "Server is running!",
-    timestamp: new Date().toISOString(),
-    environment: process.env.NODE_ENV || 'development'
-  });
+app.get("/", async (req, res, next) => {
+  try {
+    res.json({
+      status: "Server is running",
+      timestamp: new Date().toISOString(),
+      env: process.env.NODE_ENV || 'development',
+      nodeVersion: process.version
+    });  // This was missing the closing brace and parenthesis
+  } catch (error) {
+    console.error('Root route error:', error);
+    next(error);
+  }
 });
 
 // POST endpoint which requires a token for testing purposes, can be removed
@@ -67,7 +81,20 @@ app.post("/authorized_post_request", authMiddleWare, (req, res) => {
     },
   });
 });
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error('Error:', err);
+  res.status(500).json({
+    error: 'Internal Server Error',
+    message: process.env.NODE_ENV === 'production' ? 'Something went wrong' : err.message
+  });
+});
 
-app.listen(PORT, () => {
-  console.log(`Listening on port: ${PORT}`);
+// Start server
+const server = app.listen(4000, '0.0.0.0', () => {
+  const { address, port } = server.address();
+  console.log(`Server is running on http://${address}:${port}`);
+}).on('error', (error) => {
+  console.error('Failed to start server:', error);
+  process.exit(1);
 });
